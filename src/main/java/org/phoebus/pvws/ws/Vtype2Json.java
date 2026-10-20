@@ -53,24 +53,24 @@ public class Vtype2Json
         g.writeStringField("type", "update");
         g.writeStringField("pv", name);
 
-        if (value instanceof VNumber)
-            handleNumber(g, (VNumber) value, last_value);
-        else if (value instanceof VString)
-            handleString(g, (VString) value, last_value);
-        else if (value instanceof VEnum)
-            handleEnum(g, (VEnum) value, last_value);
-        else if (value instanceof VByteArray)
-            handleBytes(g, (VNumberArray) value, last_value);
+        if (value instanceof VNumber vNumber)
+            handleNumber(g, vNumber, last_value);
+        else if (value instanceof VString vString)
+            handleString(g, vString, last_value);
+        else if (value instanceof VEnum  vEnum)
+            handleEnum(g, vEnum, last_value);
+        else if (value instanceof VByteArray vByteArray)
+            handleBytes(g, vByteArray, last_value);
 
         // Serialize double and float arrays as b64dbl
-        else if (value instanceof VDoubleArray)
-            handleDoubles(g, (VNumberArray) value, last_value);
-        else if (value instanceof VFloatArray)
-            handleFloats(g, (VNumberArray) value, last_value);
+        else if (value instanceof VDoubleArray vDoubleArray)
+            handleDoubles(g, vDoubleArray, last_value);
+        else if (value instanceof VFloatArray vFloatArray)
+            handleFloats(g, vFloatArray, last_value);
 
             // Serialize remaining number arrays (int) as b64int
-        else if (value instanceof VNumberArray)
-            handleInts(g, (VNumberArray) value, last_value);
+        else if (value instanceof VNumberArray vNumberArray)
+            handleInts(g, vNumberArray, last_value);
 
         else if (value != null)
         {
@@ -101,8 +101,8 @@ public class Vtype2Json
     {
         final AlarmSeverity severity = value.getAlarm().getSeverity();
         if (last_value == null  ||
-            (last_value instanceof VString  &&
-             ((VString) last_value).getAlarm().getSeverity() != severity))
+            (last_value instanceof VString  vString &&
+             vString.getAlarm().getSeverity() != severity))
             g.writeStringField("severity", value.getAlarm().getSeverity().name());
 
         g.writeStringField("text", value.getValue());
@@ -176,8 +176,8 @@ public class Vtype2Json
         else
         {
             // Add severity if it changed
-            if ((last_value instanceof VNumber)  &&
-                ((VNumber) last_value).getAlarm().getSeverity() != severity)
+            if ((last_value instanceof VNumber vNumber)  &&
+                vNumber.getAlarm().getSeverity() != severity)
                 g.writeStringField("severity", severity.name());
         }
 
@@ -208,8 +208,8 @@ public class Vtype2Json
         else
         {
             // Add severity if it changed
-            if ((last_value instanceof VNumber)  &&
-                ((VNumber) last_value).getAlarm().getSeverity() != severity)
+            if ((last_value instanceof VNumber vNumber)  &&
+                vNumber.getAlarm().getSeverity() != severity)
                 g.writeStringField("severity", severity.name());
         }
 
@@ -240,8 +240,8 @@ public class Vtype2Json
         else
         {
             // Add severity if it changed
-            if ((last_value instanceof VNumber)  &&
-                    ((VNumber) last_value).getAlarm().getSeverity() != severity)
+            if ((last_value instanceof VNumber vNumber)  &&
+                    vNumber.getAlarm().getSeverity() != severity)
                 g.writeStringField("severity", severity.name());
         }
 
@@ -277,8 +277,8 @@ public class Vtype2Json
         else
         {
             // Add severity if it changed
-            if ((last_value instanceof VNumber)  &&
-                    ((VNumber) last_value).getAlarm().getSeverity() != severity)
+            if ((last_value instanceof VNumber vNumber)  &&
+                    vNumber.getAlarm().getSeverity() != severity)
                 g.writeStringField("severity", severity.name());
         }
 
@@ -300,8 +300,8 @@ public class Vtype2Json
         else
         {
             // Add severity if it changed
-            if ((last_value instanceof VNumber)  &&
-                    ((VNumber) last_value).getAlarm().getSeverity() != severity)
+            if ((last_value instanceof VNumber vNumber)  &&
+                    vNumber.getAlarm().getSeverity() != severity)
                 g.writeStringField("severity", severity.name());
         }
 
@@ -329,8 +329,8 @@ public class Vtype2Json
         else
         {
             // Add severity if it changed
-            if ((last_value instanceof VNumber)  &&
-                    ((VNumber) last_value).getAlarm().getSeverity() != severity)
+            if ((last_value instanceof VNumber vNumber)  &&
+                    vNumber.getAlarm().getSeverity() != severity)
                 g.writeStringField("severity", severity.name());
         }
 
@@ -358,8 +358,8 @@ public class Vtype2Json
         else
         {
             // Add severity if it changed
-            if ((last_value instanceof VNumber)  &&
-                    ((VNumber) last_value).getAlarm().getSeverity() != severity)
+            if ((last_value instanceof VNumber vNumber)  &&
+                    vNumber.getAlarm().getSeverity() != severity)
                 g.writeStringField("severity", severity.name());
         }
 
