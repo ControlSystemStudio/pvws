@@ -15,7 +15,7 @@
     <description>EPICS web socket server</description>
     <packaging>${packaging.type}</packaging>
     <properties>
-        <java.version>11</java.version>
+        <java.version>17</java.version>
     </properties>
     <dependencies>
 
