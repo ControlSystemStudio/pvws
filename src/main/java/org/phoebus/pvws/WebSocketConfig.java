@@ -44,7 +44,7 @@ public class WebSocketConfig implements WebSocketConfigurer {
     @Autowired
     private PvSocketHandler pvSocketHandler;
 
-    @Value("${cors.allowed.origins}")
+    @Value("${cors.allowed.origins:}")
     private String allowedOrigins;
 
     private final Logger logger = Logger.getLogger(WebSocketConfig.class.getName());
