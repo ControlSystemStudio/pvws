@@ -21,6 +21,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.phoebus.pvws.ws.PvSocketHandler;
 import org.phoebus.pvws.ws.WebSocket;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;
 import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
@@ -43,10 +44,18 @@ public class WebSocketConfig implements WebSocketConfigurer {
     @Autowired
     private PvSocketHandler pvSocketHandler;
 
+    @Value("${cors.allowed.origins}")
+    private String allowedOrigins;
+
     private final Logger logger = Logger.getLogger(WebSocketConfig.class.getName());
 
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-        registry.addHandler(pvSocketHandler, "/pv");
+        if(allowedOrigins != null && !allowedOrigins.isEmpty()) {
+            registry.addHandler(pvSocketHandler, "/pv").setAllowedOriginPatterns(allowedOrigins.trim());
+        }
+        else{
+            registry.addHandler(pvSocketHandler, "/pv");
+        }
     }
 }
