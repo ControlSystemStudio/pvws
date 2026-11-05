@@ -42,9 +42,9 @@ This is the main websocket connection endpoint. See `/pvws` for information on c
 Requirements
 ------------
 
-To build: JDK 17, Maven 3.8+
+To build: JDK 25, Maven 3.8+
 
-To run: JRE 17
+To run: JRE 25
 
 Build
 =====
@@ -100,15 +100,13 @@ Command line options will override definitions in ``application.properties``.
 Tomcat war
 ----------
 
-**NOTE:** Verified on Tomcat 9 only.
+**NOTE:** Spring Boot 4 requires a Jakarta EE 11 compatible servlet container, such as Tomcat 11.
 
 Copy ``pvws.war`` to ``TOMCAT_ROOT/webapps``. Set environment variable:
 
 ``>export JAVA_OPTS=-Dspring.config.location=file:/path/to/directory/``
 
 and launch Tomcat.
-
-
 
 
 
